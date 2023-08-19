@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expense Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">EXPENSE TRACKER</span>
+        </div>
+    </nav>
+    <div class="container m-3 p-3">
+        <form class="row gx-3 gy-2 align-items-center" id="formData">
+            <div class="col-sm-3">
+                <label for="specificSizeInputName m-2">Amount</label>
+                <input type="number" class="form-control" id="specificSizeInputName" placeholder="enter amount">
+            </div>
+            <div class="col-sm-3">
+                <label for="specificSizeInputGroupUsername m-2">Description</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="specificSizeInputGroupUsername"
+                        placeholder="add description">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label for="specificSizeSelect m-2">Category</label>
+                <select class="form-select" id="specificSizeSelect">
+                    <option selected>Choose category</option>
+                    <option value="movie">movie</option>
+                    <option value="shopping">shopping</option>
+                    <option value="emi">emi</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <h1 style="text-align: center;" class="m-3">Your expenses are</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
