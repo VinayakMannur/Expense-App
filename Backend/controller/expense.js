@@ -35,10 +35,11 @@ exports.deleteExpense = (req, res, next) =>{
 }
 
 exports.editExpense = (req, res, next) => {
-    const editId = req.body.editId;
-    const editAmount = req.body.editAmount;
-    const editDescip = req.body.editDescip;
-    const editCat = req.body.editCat;
+    const editId = req.body.id;
+    const editAmount = req.body.amount;
+    const editDescip = req.body.desci;
+    const editCat = req.body.cat;
+    // console.log(editId);
 
     const expense = new Expense(editId, editAmount, editDescip, editCat);
 

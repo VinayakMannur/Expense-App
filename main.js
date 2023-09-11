@@ -3,6 +3,9 @@ let form = document.getElementById("formData")
 let parent = document.getElementById("table")
 let saveBtnDiv = document.getElementById('saveBtnDiv');
 
+const formEdit = document.getElementById('table')
+formEdit.addEventListener('click', editE)
+
 form.addEventListener('submit', addData)
 parent.addEventListener('click', removeItem)
 
@@ -69,6 +72,8 @@ async function showExpenses() {
 
         let editBtn = document.createElement("button")
         editBtn.className = "btn btn-sm btn-success edit"
+        editBtn.setAttribute("data-bs-toggle","modal" )
+        editBtn.setAttribute("data-bs-target","#exampleModal")
 
         editBtn.textContent = "Edit"
 
@@ -83,6 +88,7 @@ async function showExpenses() {
 
         parent.appendChild(row)
     })
+
 }
 
 async function removeItem(e) {
@@ -101,6 +107,73 @@ async function removeItem(e) {
             .catch(err => console.log(err));
         
         location.reload();
+    }
+}
+
+const update1 = document.getElementById('update');
+update1.addEventListener('click', replaceText);
+
+async function replaceText(){
+    // console.log('in replcae text');
+    let uid =  document.getElementById('uid');
+    let uamount = document.getElementById('uamount');
+    let udesc = document.getElementById('udesc');
+    let ucat = document.getElementById('ucat');
+    console.log(uid);
+
+    await axios.post('http://localhost:9000/edit', {
+
+        id : uid.value,
+        amount : uamount.value,
+        desci: udesc.value,
+        cat : ucat.value
+    })
+        .then((responce) =>{
+            console.log(responce);
+            alert(responce.data.msg)
+            location.reload()
+        })
+        .catch((err) =>{
+            console.log(err);
+        })
+}
+
+async function editPop(id){
+
+    let uamount = document.getElementById('uamount');
+    let udesc = document.getElementById('udesc');
+    let ucat = document.getElementById('ucat');
+    let uid = document.getElementById('uid');
+
+    let listv = [];
+    await axios.get("http://localhost:9000")
+        .then((responce) => {
+            listv = responce.data.data;
+            // console.log(expense[0]);
+            const update1 = document.getElementById('update');
+            update1.addEventListener('click', replaceText);
+        })
+
+    listv.forEach((item) => {
+        // console.log(item);
+
+        if (item.id == id) {
+            console.log("loging");
+            uid.value = id
+            uamount.value = item.amount
+            udesc.value = item.desci
+            ucat.value = item.cat
+        }
+
+    })
+    
+}
+
+function editE(e){
+    e.preventDefault;
+    if(e.target.classList.contains('edit')){
+        // console.log(e.target.parentElement.parentElement.firstElementChild.innerText);
+        editPop(e.target.parentElement.parentElement.firstElementChild.innerText)
     }
 }
 

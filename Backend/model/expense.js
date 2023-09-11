@@ -15,7 +15,7 @@ module.exports = class Expense{
             [this.amount, this.desci, this.cat]);
         }
         else{
-            console.log('in update');
+            // console.log('in update');
             return db.execute('UPDATE expense SET amount=?, desci=?, cat=? WHERE id=?',
             [this.amount, this.desci, this.cat, this.id]);
         }
